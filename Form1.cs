@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace ChelDuma_Publishing
+namespace TextEqualizer
 {
     public partial class Form1 : Form
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ChelDuma_Publishing
+namespace TextEqualizer
 {
     static class Program
     {

@@ -2,7 +2,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace ChelDuma_Publishing
+namespace TextEqualizer
 {
     static class Extractor
     {

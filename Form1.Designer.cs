@@ -1,4 +1,4 @@
-﻿namespace ChelDuma_Publishing
+﻿namespace TextEqualizer
 {
     partial class Form1
     {
@@ -262,7 +262,7 @@
             // 
             // button_Fio
             // 
-            this.button_Fio.BackgroundImage = global::ChelDuma_Publishing.Properties.Resources.man_2_icon_icons1;
+            this.button_Fio.BackgroundImage = global::TextEqualizer.Properties.Resources.man_2_icon_icons1;
             this.button_Fio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button_Fio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_Fio.Location = new System.Drawing.Point(14, 133);
@@ -291,7 +291,7 @@
             // 
             // button_Header
             // 
-            this.button_Header.BackgroundImage = global::ChelDuma_Publishing.Properties.Resources._27_Edit_Text_256x256_35395;
+            this.button_Header.BackgroundImage = global::TextEqualizer.Properties.Resources._27_Edit_Text_256x256_35395;
             this.button_Header.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button_Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_Header.Location = new System.Drawing.Point(6, 208);
