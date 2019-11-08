@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace TextEqualizer
+namespace ChelDuma_Publishing
 {
     public partial class Form1 : Form
     {
@@ -54,12 +54,14 @@ namespace TextEqualizer
             dateTimePicker1.CustomFormat = "dd.MM.yyyy";
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
             dateTimePicker2.CustomFormat = "d M  yyyy";
-            comboBox_FIO_Format.Items.Add("Фамилия Имя Отчество");
-            comboBox_FIO_Format.Items.Add("Фамилия/Имя Отчество");
-            comboBox_FIO_Format.Items.Add("ФАМИЛИЯ Имя Отчество");
-            comboBox_FIO_Format.Items.Add("ФАМИЛИЯ/Имя Отчество");
-            comboBox_FIO_Format.Items.Add("        Имя Отчество");
-            comboBox_FIO_Format.Items.Add("        И.О.");
+            comboBox_FIO_Format.Items.Add("Фамилия Имя Отчество"); //0
+            comboBox_FIO_Format.Items.Add("Фамилия/Имя Отчество");//1
+            comboBox_FIO_Format.Items.Add("ФАМИЛИЯ Имя Отчество");//2
+            comboBox_FIO_Format.Items.Add("ФАМИЛИЯ/Имя Отчество");//3
+            comboBox_FIO_Format.Items.Add("        Имя Отчество");//4
+            comboBox_FIO_Format.Items.Add("Фамилия И.О.");//5
+            comboBox_FIO_Format.Items.Add("И.О. Фамилия");//6
+            comboBox_FIO_Format.Items.Add("        И.О.");//7
             comboBox_FIO_Format.SelectedIndex = 0;
             comboBox_Case_Format.Items.Add("Именительный->(Кто? Что?)");
             comboBox_Case_Format.Items.Add("Родительный ->(Кого? Чего?)");
@@ -101,9 +103,9 @@ namespace TextEqualizer
         {
             richTextBox_Fio.Text = Clipboard.GetText();
             richTextBox_Fio.Font = new Font(richTextBox_Fio.Font.FontFamily, (int)numericUpDown_Font_Size.Value, FontStyle.Regular); //Ставим дефолтный шрифт
-            string lastName = Extractor.TextHandler(richTextBox_Fio.Text, 1, true);
-            string firstName = Extractor.TextHandler(richTextBox_Fio.Text, 2, true);
-            string middleName = Extractor.TextHandler(richTextBox_Fio.Text, 3, true);
+            string lastName = Extractor.NameExtractor(richTextBox_Fio.Text, 1);
+            string firstName = Extractor.NameExtractor(richTextBox_Fio.Text, 2);
+            string middleName = Extractor.NameExtractor(richTextBox_Fio.Text, 3);
             //Склоняем
             lastName = Extractor.Declensions(lastName, comboBox_Case_Format.SelectedIndex);
             firstName = Extractor.Declensions(firstName, comboBox_Case_Format.SelectedIndex);
@@ -128,7 +130,17 @@ namespace TextEqualizer
                     io = true;
                     richTextBox_Fio.Text = firstName + " " + middleName;
                     break;
-                case 5: //И.О.
+                case 5: //Фамилия И.О.
+                    io = true;
+                    try { richTextBox_Fio.Text = lastName +" "+ firstName.Substring(0, 1) + "." + middleName.Substring(0, 1) + "."; }
+                    catch (System.ArgumentOutOfRangeException) { richTextBox_Fio.Text = ""; }
+                    break;
+                case 6: //И.О. Фамилия 
+                    io = true;
+                    try { richTextBox_Fio.Text = firstName.Substring(0, 1) + "." + middleName.Substring(0, 1) + ". " + lastName; }
+                    catch (System.ArgumentOutOfRangeException) { richTextBox_Fio.Text = ""; }
+                    break;
+                case 7: //И.О.
                     io = true;
                     try { richTextBox_Fio.Text = firstName.Substring(0, 1) + "." + middleName.Substring(0, 1) + "."; }
                     catch (System.ArgumentOutOfRangeException) { richTextBox_Fio.Text = ""; }
@@ -152,7 +164,6 @@ namespace TextEqualizer
             richTextBox_Fio.Copy();
             io = false;
         }
-
 
     }
 }

@@ -1,47 +1,32 @@
-﻿using System;
-using LingvoNET;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using LingvoNET;
+using System;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace TextEqualizer
+namespace ChelDuma_Publishing
 {
     static class Extractor
     {
-        // получаем три слова, возвращаем слова по указаному номеру начиная с 1
-        public static string TextHandler(this string text, int num=1, bool firstCapitalLetter = false) //входная строка, номер слова если надо, делать ли первые буквы заглавными
+        public static string NameExtractor(string threeWords, int wordNumber)
         {
-            try
-            {
-                text = Eraser(text, firstCapitalLetter); //выносим "мусор"
-                string[] words = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); //делаем массив из слов и символов
-                if (firstCapitalLetter) //делаем первые буквы заглавными если надо
-                {
-                    for (int i = 0; i < words.Length; i++) 
-                    {
-                        string word = words[i].ToLower(); //опускам в нижний регистр
-                        if (!char.IsDigit(Convert.ToChar(word.Substring(0, 1)))) //если не цифра то делаем заглавными
-                        {
-                            words[i] = word.Substring(0, 1).ToUpper() + word.Substring(1, word.Length - 1);
-                        }
-                    }
-                    return words[--num];
-                }
-                return string.Join(" ", words); //иначе объединяем массив в строку с разделением пробелами и возвращеам полный склееный текст
-
-            }
-            catch (Exception)
-            {
-                return "";
-            }
+            threeWords = TrashOut(threeWords, true); //выносим "мусор"
+            string[] wordsArray = threeWords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); //делаем массив из слов и символов игнорируя множественные пробелы
+            if (wordsArray.Length < wordNumber) return "";
+            string word = wordsArray[--wordNumber].ToLower(); //опускам в нижний регистр
+            word = word.Substring(0, 1).ToUpper() + word.Substring(1, word.Length - 1); //делаем первую букву заглавной
+            return word;
+        }
+        public static string TextHandler(this string text) //чистим любой текст
+        {
+            text = TrashOut(text); //выносим "мусор"
+            string[] wordsArray = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); //делаем массив из слов и символов игнорируя множественные пробелы
+            return string.Join(" ", wordsArray); //иначе объединяем массив в строку с разделением пробелами и возвращеам полный склееный текст
         }
 
-        public static string Eraser (string text, bool firstCapitalLetter = false) //удаляем всякие знаки из строки
+        public static string TrashOut(string text, bool fio = false) //удаляем всякие знаки из строки
         {
-            if (firstCapitalLetter) text = Regex.Replace(text, @"\W", " "); //удаляем все кроме букв и цифр
-            if(firstCapitalLetter) text = Regex.Replace(text, @"\d", " "); //удаляем цифры
+            if (fio) text = Regex.Replace(text, @"\W", " "); //удаляем все кроме букв и цифр
+            if (fio) text = Regex.Replace(text, @"\W", " "); //удаляем все кроме букв и цифр
+            if (fio) text = Regex.Replace(text, @"\d", " "); //удаляем цифры
             text = Regex.Replace(text, Environment.NewLine, " "); //удаляем разрывы строк вариант 1
             text = Regex.Replace(text, @"\n", " "); //удаляем разрывы строк вариант 2
             text = Regex.Replace(text, @"\t", " "); //удаляем знаки табуляции

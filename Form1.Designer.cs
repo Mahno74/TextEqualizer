@@ -1,4 +1,4 @@
-﻿namespace TextEqualizer
+﻿namespace ChelDuma_Publishing
 {
     partial class Form1
     {
@@ -63,6 +63,7 @@
             this.textBox_Header.Location = new System.Drawing.Point(6, 21);
             this.textBox_Header.Multiline = true;
             this.textBox_Header.Name = "textBox_Header";
+            this.textBox_Header.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Header.Size = new System.Drawing.Size(489, 162);
             this.textBox_Header.TabIndex = 0;
             // 
@@ -232,7 +233,7 @@
             this.groupBox2.Controls.Add(this.richTextBox_Fio);
             this.groupBox2.Controls.Add(this.groupBox1);
             this.groupBox2.Controls.Add(this.button_Fio);
-            this.groupBox2.Location = new System.Drawing.Point(12, 313);
+            this.groupBox2.Location = new System.Drawing.Point(12, 336);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(691, 195);
             this.groupBox2.TabIndex = 12;
@@ -261,7 +262,7 @@
             // 
             // button_Fio
             // 
-            this.button_Fio.BackgroundImage = global::TextEqualizer.Properties.Resources.man_2_icon_icons1;
+            this.button_Fio.BackgroundImage = global::ChelDuma_Publishing.Properties.Resources.man_2_icon_icons1;
             this.button_Fio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button_Fio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_Fio.Location = new System.Drawing.Point(14, 133);
@@ -281,7 +282,7 @@
             this.groupBox3.Controls.Add(this.button_Header);
             this.groupBox3.Controls.Add(this.label_CharCounter);
             this.groupBox3.Controls.Add(this.textBox_Header);
-            this.groupBox3.Location = new System.Drawing.Point(12, 12);
+            this.groupBox3.Location = new System.Drawing.Point(12, 35);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(691, 295);
             this.groupBox3.TabIndex = 13;
@@ -290,7 +291,7 @@
             // 
             // button_Header
             // 
-            this.button_Header.BackgroundImage = global::TextEqualizer.Properties.Resources._27_Edit_Text_256x256_35395;
+            this.button_Header.BackgroundImage = global::ChelDuma_Publishing.Properties.Resources._27_Edit_Text_256x256_35395;
             this.button_Header.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button_Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_Header.Location = new System.Drawing.Point(6, 208);
@@ -305,7 +306,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 519);
+            this.ClientSize = new System.Drawing.Size(715, 551);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

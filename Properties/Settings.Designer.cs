@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TextEqualizer.Properties
+namespace ChelDuma_Publishing.Properties
 {
 
 
