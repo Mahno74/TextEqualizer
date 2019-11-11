@@ -1,8 +1,8 @@
 ﻿using LingvoNET;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -70,8 +70,9 @@ namespace TextEqualizer
             comboBox_Case_Format.Items.Add("Творительный->(Кем? Чем ?)");
             comboBox_Case_Format.Items.Add("Передложный ->(О ком? О чём?)");
             comboBox_Case_Format.SelectedIndex = 0;
-
+            ReadSettings();
         }
+       
         private void DisplayClipboardData() //вызывается автоматически про попадании текса в буфер обмена
         {
             if (io) return; //если в буфер попало только  ИО или И.О. то ничего не делаем
@@ -132,7 +133,7 @@ namespace TextEqualizer
                     break;
                 case 5: //Фамилия И.О.
                     io = true;
-                    try { richTextBox_Fio.Text = lastName +" "+ firstName.Substring(0, 1) + "." + middleName.Substring(0, 1) + "."; }
+                    try { richTextBox_Fio.Text = lastName + " " + firstName.Substring(0, 1) + "." + middleName.Substring(0, 1) + "."; }
                     catch (System.ArgumentOutOfRangeException) { richTextBox_Fio.Text = ""; }
                     break;
                 case 6: //И.О. Фамилия 
@@ -164,6 +165,38 @@ namespace TextEqualizer
             richTextBox_Fio.Copy();
             io = false;
         }
-
+        private void ReadSettings() //чтение настроек
+        {
+            try
+            {
+                using (BinaryReader readerData = new BinaryReader(File.OpenRead("settings.bin")))
+                {
+                    checkBox_SurnameBold.Checked = readerData.ReadBoolean(); //жирная фамилия
+                    numericUpDown_Font_Size.Value = readerData.ReadDecimal(); //размер шрифта
+                    comboBox_FIO_Format.SelectedIndex = readerData.ReadInt32(); //вид ФИО
+                }
+            }
+            catch (Exception)
+            {
+                SaveSettings();
+            }
+        }
+        private void SaveSettings() //сохрание настроек
+        {
+            try
+            {
+                using (BinaryWriter writer = new BinaryWriter(File.OpenWrite("settings.bin")))
+                {
+                    writer.Write(checkBox_SurnameBold.Checked); //жирная фамилия
+                    writer.Write(numericUpDown_Font_Size.Value); //размер шрифта
+                    writer.Write(comboBox_FIO_Format.SelectedIndex); //вид ФИО
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show(ex.Message);
+            }
+        }
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) => SaveSettings(); //Сохранение настроек при выходе
     }
 }
