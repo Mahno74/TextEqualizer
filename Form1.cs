@@ -1,9 +1,7 @@
-﻿using LingvoNET;
-using System;
+﻿using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace TextEqualizer
@@ -24,10 +22,9 @@ namespace TextEqualizer
             InitializeComponent();
             button_Fio.Click += new EventHandler(Fio_Formatting); //нажатие на кнопку ФИО
             button_Header.Click += new EventHandler(Text_Formatting); //нажатие на кнопку вставить текст
-            nextClipboardViewer = (IntPtr)SetClipboardViewer((int)Handle);
-
+            nextClipboardViewer = (IntPtr)SetClipboardViewer((int)Handle); //для автомитического слежения за буфером
         }
-        protected override void WndProc(ref Message m)
+        protected override void WndProc(ref Message m)//для автомитического слежения за буфером 
         {
             const int WM_DRAWCLIPBOARD = 0x308;
             const int WM_CHANGECBCHAIN = 0x030D;
@@ -58,21 +55,20 @@ namespace TextEqualizer
             comboBox_FIO_Format.Items.Add("Фамилия/Имя Отчество");//1
             comboBox_FIO_Format.Items.Add("ФАМИЛИЯ Имя Отчество");//2
             comboBox_FIO_Format.Items.Add("ФАМИЛИЯ/Имя Отчество");//3
-            comboBox_FIO_Format.Items.Add("        Имя Отчество");//4
+            comboBox_FIO_Format.Items.Add("Имя Отчество");//4
             comboBox_FIO_Format.Items.Add("Фамилия И.О.");//5
             comboBox_FIO_Format.Items.Add("И.О. Фамилия");//6
-            comboBox_FIO_Format.Items.Add("        И.О.");//7
-            comboBox_FIO_Format.SelectedIndex = 0;
+            comboBox_FIO_Format.Items.Add("И.О.");//7
+
             comboBox_Case_Format.Items.Add("Именительный->(Кто? Что?)");
             comboBox_Case_Format.Items.Add("Родительный ->(Кого? Чего?)");
             comboBox_Case_Format.Items.Add("Дательный   ->(Кому? Чему?)");
             comboBox_Case_Format.Items.Add("Винительный ->(Кого? Что?)");
             comboBox_Case_Format.Items.Add("Творительный->(Кем? Чем ?)");
             comboBox_Case_Format.Items.Add("Передложный ->(О ком? О чём?)");
-            comboBox_Case_Format.SelectedIndex = 0;
             ReadSettings();
         }
-       
+
         private void DisplayClipboardData() //вызывается автоматически про попадании текса в буфер обмена
         {
             if (io) return; //если в буфер попало только  ИО или И.О. то ничего не делаем
@@ -149,18 +145,14 @@ namespace TextEqualizer
                 default:
                     break;
             }
-
-
             if (checkBox_SurnameBold.Checked) //выделяем фамилияю капсом
             {
-                if ((comboBox_FIO_Format.SelectedIndex == 4) || (comboBox_FIO_Format.SelectedIndex == 5))  //выделяем всю строку жирным
+                if ((comboBox_FIO_Format.SelectedIndex == 4) || (comboBox_FIO_Format.SelectedIndex == 6) || (comboBox_FIO_Format.SelectedIndex == 7))  //выделяем всю строку жирным
                     richTextBox_Fio.Select(0, richTextBox_Fio.Text.Length);
                 else
                     richTextBox_Fio.Select(0, lastName.Length); //выделяем только первое слово (фамилию)
-
                 richTextBox_Fio.SelectionFont = new Font(richTextBox_Fio.Font.FontFamily, richTextBox_Fio.Font.Size, FontStyle.Bold);
             }
-
             richTextBox_Fio.SelectAll();
             richTextBox_Fio.Copy();
             io = false;
@@ -176,7 +168,7 @@ namespace TextEqualizer
                     comboBox_FIO_Format.SelectedIndex = readerData.ReadInt32(); //вид ФИО
                 }
             }
-            catch (Exception)
+            catch (Exception) //если файла с настройками нет, создаем
             {
                 SaveSettings();
             }
