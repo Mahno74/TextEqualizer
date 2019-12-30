@@ -2,6 +2,7 @@
 using System;
 using System.Text.RegularExpressions;
 
+
 namespace TextEqualizer
 {
     static class Extractor
@@ -15,6 +16,19 @@ namespace TextEqualizer
             word = word.Substring(0, 1).ToUpper() + word.Substring(1, word.Length - 1); //делаем первую букву заглавной
             return word;
         }
+
+        public static (string last, string first, string middle) LastFirstMiddle(string threeWords)
+        {
+            threeWords = TrashOut(threeWords, true); //выносим "мусор"
+            string[] wordsArray = threeWords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); //делаем массив из слов и символов игнорируя множественные пробелы
+            for (int i = 0; i < wordsArray.Length; i++)
+            {
+                wordsArray[i] = wordsArray[i].ToLower();
+                wordsArray[i] = wordsArray[i].Substring(0, 1).ToUpper() + wordsArray[i].Substring(1, wordsArray[i].Length - 1);
+            }
+            return (wordsArray[0], wordsArray[1], wordsArray[2]);
+        }
+
         public static string TextHandler(this string text) //чистим любой текст
         {
             text = TrashOut(text); //выносим "мусор"
