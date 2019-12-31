@@ -23,7 +23,8 @@ namespace TextEqualizer
             string[] wordsArray = threeWords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); //делаем массив из слов и символов игнорируя множественные пробелы
             for (int i = 0; i < wordsArray.Length; i++)
             {
-                wordsArray[i] = wordsArray[i].ToLower();
+                wordsArray[i] = wordsArray[i].ToLower(); //в нижний регистр
+                //первые буквы - заглавные
                 wordsArray[i] = wordsArray[i].Substring(0, 1).ToUpper() + wordsArray[i].Substring(1, wordsArray[i].Length - 1);
             }
             return (wordsArray[0], wordsArray[1], wordsArray[2]);
@@ -38,9 +39,8 @@ namespace TextEqualizer
 
         public static string TrashOut(string text, bool fio = false) //удаляем всякие знаки из строки
         {
-            if (fio) text = Regex.Replace(text, @"\W", " "); //удаляем все кроме букв и цифр
-            if (fio) text = Regex.Replace(text, @"\W", " "); //удаляем все кроме букв и цифр
-            if (fio) text = Regex.Replace(text, @"\d", " "); //удаляем цифры
+            if (fio) text = Regex.Replace(text, @"\W|\d", " "); //удаляем все кроме букв
+            //if (fio) text = Regex.Replace(text, @"\d", " "); //удаляем цифры
             text = Regex.Replace(text, Environment.NewLine, " "); //удаляем разрывы строк вариант 1
             text = Regex.Replace(text, @"\n", " "); //удаляем разрывы строк вариант 2
             text = Regex.Replace(text, @"\t", " "); //удаляем знаки табуляции

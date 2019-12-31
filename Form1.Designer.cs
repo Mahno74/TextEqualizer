@@ -80,8 +80,9 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Checked = false;
-            this.dateTimePicker1.CustomFormat = "MM/dd/yyyy";
+            this.dateTimePicker1.CustomFormat = "dd MM yyyy";
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(544, 216);
             this.dateTimePicker1.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -92,21 +93,25 @@
             // 
             this.label_SessionDate.AutoSize = true;
             this.label_SessionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_SessionDate.ForeColor = System.Drawing.Color.Blue;
             this.label_SessionDate.Location = new System.Drawing.Point(534, 193);
             this.label_SessionDate.Name = "label_SessionDate";
-            this.label_SessionDate.Size = new System.Drawing.Size(133, 20);
+            this.label_SessionDate.Size = new System.Drawing.Size(124, 20);
             this.label_SessionDate.TabIndex = 4;
-            this.label_SessionDate.Text = "Дата заседания";
+            this.label_SessionDate.Text = "Дата принятия";
+            this.label_SessionDate.Click += new System.EventHandler(this.label_SessionDate_Click);
             // 
             // label_PubDate
             // 
             this.label_PubDate.AutoSize = true;
             this.label_PubDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_PubDate.ForeColor = System.Drawing.Color.Blue;
             this.label_PubDate.Location = new System.Drawing.Point(512, 241);
             this.label_PubDate.Name = "label_PubDate";
             this.label_PubDate.Size = new System.Drawing.Size(167, 20);
             this.label_PubDate.TabIndex = 5;
             this.label_PubDate.Text = "Дата опубликования";
+            this.label_PubDate.Click += new System.EventHandler(this.label_PubDate_Click);
             // 
             // dateTimePicker2
             // 
