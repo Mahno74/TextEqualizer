@@ -48,9 +48,9 @@ namespace TextEqualizer
         {
             Text = "Форматирование текстов и ФИО по шаблону  Юрасов В.В. (с) 2019";
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "dd.MM.yyyy";
+            dateTimePicker1.CustomFormat = "dd M yyyy";
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.CustomFormat = "d M  yyyy";
+            dateTimePicker2.CustomFormat = "dd.MM.yyyy";
             comboBox_FIO_Format.Items.Add("Фамилия Имя Отчество"); //0
             comboBox_FIO_Format.Items.Add("Фамилия/Имя Отчество");//1
             comboBox_FIO_Format.Items.Add("ФАМИЛИЯ Имя Отчество");//2
@@ -100,9 +100,13 @@ namespace TextEqualizer
         {
             richTextBox_Fio.Text = Clipboard.GetText();
             richTextBox_Fio.Font = new Font(richTextBox_Fio.Font.FontFamily, (int)numericUpDown_Font_Size.Value, FontStyle.Regular); //Ставим дефолтный шрифт
-            string lastName = Extractor.NameExtractor(richTextBox_Fio.Text, 1);
-            string firstName = Extractor.NameExtractor(richTextBox_Fio.Text, 2);
-            string middleName = Extractor.NameExtractor(richTextBox_Fio.Text, 3);
+            //string lastName = Extractor.NameExtractor(richTextBox_Fio.Text, 1);
+            //string firstName = Extractor.NameExtractor(richTextBox_Fio.Text, 2);
+            //string middleName = Extractor.NameExtractor(richTextBox_Fio.Text, 3);
+            var fio = Extractor.LastFirstMiddle(richTextBox_Fio.Text);
+            string lastName = fio.last;
+            string firstName = fio.first;
+            string middleName = fio.middle;
             //Склоняем
             lastName = Extractor.Declensions(lastName, comboBox_Case_Format.SelectedIndex);
             firstName = Extractor.Declensions(firstName, comboBox_Case_Format.SelectedIndex);
@@ -190,5 +194,10 @@ namespace TextEqualizer
             }
         }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) => SaveSettings(); //Сохранение настроек при выходе
+
+        //Дату принятия в буфер обмена
+        private void label_SessionDate_Click(object sender, EventArgs e) => Clipboard.SetText(dateTimePicker1.Text);
+        //Дату публикации в буфер обмена
+        private void label_PubDate_Click(object sender, EventArgs e) => Clipboard.SetText(dateTimePicker2.Text);
     }
 }
