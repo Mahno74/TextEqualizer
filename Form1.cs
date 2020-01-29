@@ -100,14 +100,14 @@ namespace TextEqualizer
             richTextBox_Fio.Text = Clipboard.GetText();
             richTextBox_Fio.Font = new Font(richTextBox_Fio.Font.FontFamily, (int)numericUpDown_Font_Size.Value, FontStyle.Regular); //Ставим дефолтный шрифт
 
-            var fio = Extractor.LastFirstMiddle(richTextBox_Fio.Text);
-            string lastName = fio.last;
-            string firstName = fio.first;
-            string middleName = fio.middle;
+            var fio = Extractor.FIO(richTextBox_Fio.Text);
+            string lastName = fio[0];
+            string firstName = fio[1];
+            string middleName = fio[2];
             //Склоняем
-            lastName = Extractor.Declensions(lastName, comboBox_Case_Format.SelectedIndex);
-            firstName = Extractor.Declensions(firstName, comboBox_Case_Format.SelectedIndex);
-            middleName = Extractor.Declensions(middleName, comboBox_Case_Format.SelectedIndex);
+            if(lastName!="") lastName = Extractor.Declensions(lastName, comboBox_Case_Format.SelectedIndex);
+            if (firstName != "") firstName = Extractor.Declensions(firstName, comboBox_Case_Format.SelectedIndex);
+            if (middleName != "") middleName = Extractor.Declensions(middleName, comboBox_Case_Format.SelectedIndex);
 
 
             switch (comboBox_FIO_Format.SelectedIndex)
