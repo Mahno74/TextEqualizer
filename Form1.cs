@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace TextEqualizer
@@ -94,15 +95,11 @@ namespace TextEqualizer
             textBox_Header.SelectAll();
             textBox_Header.Copy();
         }
-
-
         private void Fio_Formatting(object sender, EventArgs e) //нажатие на кнопку ФИО заголовков или дабл клик в поле
         {
             richTextBox_Fio.Text = Clipboard.GetText();
             richTextBox_Fio.Font = new Font(richTextBox_Fio.Font.FontFamily, (int)numericUpDown_Font_Size.Value, FontStyle.Regular); //Ставим дефолтный шрифт
-            //string lastName = Extractor.NameExtractor(richTextBox_Fio.Text, 1);
-            //string firstName = Extractor.NameExtractor(richTextBox_Fio.Text, 2);
-            //string middleName = Extractor.NameExtractor(richTextBox_Fio.Text, 3);
+
             var fio = Extractor.LastFirstMiddle(richTextBox_Fio.Text);
             string lastName = fio.last;
             string firstName = fio.first;
@@ -116,34 +113,34 @@ namespace TextEqualizer
             switch (comboBox_FIO_Format.SelectedIndex)
             {
                 case 0: //Фамилия Имя Отчество
-                    richTextBox_Fio.Text = lastName + " " + firstName + " " + middleName;
+                    richTextBox_Fio.Text = (lastName + " " + firstName + " " + middleName).Trim();
                     break;
                 case 1: //Фамилия/Имя Отчество
-                    richTextBox_Fio.Text = lastName + Environment.NewLine + firstName + " " + middleName;
+                    richTextBox_Fio.Text = (lastName + Environment.NewLine + firstName + " " + middleName).Trim();
                     break;
                 case 2: //ФАМИЛИЯ Имя Отчество
-                    richTextBox_Fio.Text = lastName.ToUpper() + " " + firstName + " " + middleName;
+                    richTextBox_Fio.Text = (lastName.ToUpper() + " " + firstName + " " + middleName).Trim();
                     break;
                 case 3: //ФАМИЛИЯ/Имя Отчество
-                    richTextBox_Fio.Text = lastName.ToUpper() + Environment.NewLine + firstName + " " + middleName;
+                    richTextBox_Fio.Text = (lastName.ToUpper() + Environment.NewLine + firstName + " " + middleName).Trim();
                     break;
                 case 4: //Имя Отчество
                     io = true;
-                    richTextBox_Fio.Text = firstName + " " + middleName;
+                    richTextBox_Fio.Text = (firstName + " " + middleName).Trim();
                     break;
                 case 5: //Фамилия И.О.
                     io = true;
-                    try { richTextBox_Fio.Text = lastName + " " + firstName.Substring(0, 1) + "." + middleName.Substring(0, 1) + "."; }
+                    try { (richTextBox_Fio.Text = lastName + " " + firstName.Substring(0, 1) + "." + middleName.Substring(0, 1) + ".").Trim(); }
                     catch (System.ArgumentOutOfRangeException) { richTextBox_Fio.Text = ""; }
                     break;
                 case 6: //И.О. Фамилия 
                     io = true;
-                    try { richTextBox_Fio.Text = firstName.Substring(0, 1) + "." + middleName.Substring(0, 1) + ". " + lastName; }
+                    try { (richTextBox_Fio.Text = firstName.Substring(0, 1) + "." + middleName.Substring(0, 1) + ". " + lastName).Trim(); }
                     catch (System.ArgumentOutOfRangeException) { richTextBox_Fio.Text = ""; }
                     break;
                 case 7: //И.О.
                     io = true;
-                    try { richTextBox_Fio.Text = firstName.Substring(0, 1) + "." + middleName.Substring(0, 1) + "."; }
+                    try { (richTextBox_Fio.Text = firstName.Substring(0, 1) + "." + middleName.Substring(0, 1) + ".").Trim(); }
                     catch (System.ArgumentOutOfRangeException) { richTextBox_Fio.Text = ""; }
                     break;
                 default:
@@ -157,6 +154,7 @@ namespace TextEqualizer
                     richTextBox_Fio.Select(0, lastName.Length); //выделяем только первое слово (фамилию)
                 richTextBox_Fio.SelectionFont = new Font(richTextBox_Fio.Font.FontFamily, richTextBox_Fio.Font.Size, FontStyle.Bold);
             }
+            //Clipboard.Clear();
             richTextBox_Fio.SelectAll();
             richTextBox_Fio.Copy();
             io = false;

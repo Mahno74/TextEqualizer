@@ -19,15 +19,35 @@ namespace TextEqualizer
 
         public static (string last, string first, string middle) LastFirstMiddle(string threeWords)
         {
+            
             threeWords = TrashOut(threeWords, true); //выносим "мусор"
             string[] wordsArray = threeWords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); //делаем массив из слов и символов игнорируя множественные пробелы
+            if (wordsArray.Length <3) Array.Resize(ref wordsArray, 3); //если массив меньше 3 увеличиваем
             for (int i = 0; i < wordsArray.Length; i++)
             {
+                if (wordsArray[i] == null) wordsArray[i] = ""; //если элемента нет добавляем пробел чтобы срабо
                 wordsArray[i] = wordsArray[i].ToLower(); //в нижний регистр
                 //первые буквы - заглавные
+                if(wordsArray[i] != "")
                 wordsArray[i] = wordsArray[i].Substring(0, 1).ToUpper() + wordsArray[i].Substring(1, wordsArray[i].Length - 1);
             }
             return (wordsArray[0], wordsArray[1], wordsArray[2]);
+        }
+        public static string[] FIO(string input)
+        {
+
+            input = TrashOut(input, true); //выносим "мусор"
+            string[] wordsArray = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); //делаем массив из слов и символов игнорируя множественные пробелы
+            if (wordsArray.Length < 3) Array.Resize(ref wordsArray, 3); //если массив меньше 3 увеличиваем
+            for (int i = 0; i < 3; i++)
+            {
+                if (wordsArray[i] == null) wordsArray[i] = ""; //если элемента нет добавляем пробел чтобы срабо
+                wordsArray[i] = wordsArray[i].ToLower(); //в нижний регистр
+                //первые буквы - заглавные
+                if (wordsArray[i] != "")
+                    wordsArray[i] = wordsArray[i].Substring(0, 1).ToUpper() + wordsArray[i].Substring(1, wordsArray[i].Length - 1);
+            }
+            return wordsArray;
         }
 
         public static string TextHandler(this string text) //чистим любой текст
