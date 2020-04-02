@@ -51,6 +51,7 @@
             this.button_Fio = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button_Header = new System.Windows.Forms.Button();
+            this.checkBox_TopMostWindows = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Font_Size)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -135,6 +136,7 @@
             this.groupBox1.Controls.Add(this.radioButton_Manual);
             this.groupBox1.Controls.Add(this.label_FontSize);
             this.groupBox1.Controls.Add(this.radioButton_Fio_observer);
+            this.groupBox1.Controls.Add(this.checkBox_TopMostWindows);
             this.groupBox1.Controls.Add(this.checkBox_SurnameBold);
             this.groupBox1.Controls.Add(this.radioButton_text_observer);
             this.groupBox1.Controls.Add(this.numericUpDown_Font_Size);
@@ -161,7 +163,7 @@
             // 
             this.label_FontSize.AutoSize = true;
             this.label_FontSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_FontSize.Location = new System.Drawing.Point(55, 121);
+            this.label_FontSize.Location = new System.Drawing.Point(55, 116);
             this.label_FontSize.Name = "label_FontSize";
             this.label_FontSize.Size = new System.Drawing.Size(73, 12);
             this.label_FontSize.TabIndex = 5;
@@ -202,7 +204,7 @@
             // 
             // numericUpDown_Font_Size
             // 
-            this.numericUpDown_Font_Size.Location = new System.Drawing.Point(11, 118);
+            this.numericUpDown_Font_Size.Location = new System.Drawing.Point(11, 113);
             this.numericUpDown_Font_Size.Maximum = new decimal(new int[] {
             20,
             0,
@@ -238,7 +240,7 @@
             this.groupBox2.Controls.Add(this.richTextBox_Fio);
             this.groupBox2.Controls.Add(this.groupBox1);
             this.groupBox2.Controls.Add(this.button_Fio);
-            this.groupBox2.Location = new System.Drawing.Point(12, 336);
+            this.groupBox2.Location = new System.Drawing.Point(12, 356);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(691, 195);
             this.groupBox2.TabIndex = 12;
@@ -287,7 +289,7 @@
             this.groupBox3.Controls.Add(this.button_Header);
             this.groupBox3.Controls.Add(this.label_CharCounter);
             this.groupBox3.Controls.Add(this.textBox_Header);
-            this.groupBox3.Location = new System.Drawing.Point(12, 35);
+            this.groupBox3.Location = new System.Drawing.Point(12, 55);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(691, 295);
             this.groupBox3.TabIndex = 13;
@@ -307,11 +309,24 @@
             this.button_Header.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button_Header.UseVisualStyleBackColor = true;
             // 
+            // checkBox_TopMostWindows
+            // 
+            this.checkBox_TopMostWindows.AutoSize = true;
+            this.checkBox_TopMostWindows.Checked = true;
+            this.checkBox_TopMostWindows.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_TopMostWindows.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox_TopMostWindows.Location = new System.Drawing.Point(11, 139);
+            this.checkBox_TopMostWindows.Name = "checkBox_TopMostWindows";
+            this.checkBox_TopMostWindows.Size = new System.Drawing.Size(116, 16);
+            this.checkBox_TopMostWindows.TabIndex = 3;
+            this.checkBox_TopMostWindows.Text = "Поверх всех окон";
+            this.checkBox_TopMostWindows.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 551);
+            this.ClientSize = new System.Drawing.Size(715, 596);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -353,6 +368,7 @@
         private System.Windows.Forms.RadioButton radioButton_Manual;
         private System.Windows.Forms.ComboBox comboBox_FIO_Format;
         private System.Windows.Forms.ComboBox comboBox_Case_Format;
+        private System.Windows.Forms.CheckBox checkBox_TopMostWindows;
     }
 }
 

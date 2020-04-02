@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
+using TextEqualizer.Properties;
 
 namespace TextEqualizer
 {
@@ -21,6 +20,7 @@ namespace TextEqualizer
         public Form1()
         {
             InitializeComponent();
+            TopMost = true;
             button_Fio.Click += new EventHandler(Fio_Formatting); //нажатие на кнопку ФИО
             button_Header.Click += new EventHandler(Text_Formatting); //нажатие на кнопку вставить текст
             nextClipboardViewer = (IntPtr)SetClipboardViewer((int)Handle); //для автомитического слежения за буфером
@@ -105,7 +105,7 @@ namespace TextEqualizer
             string firstName = fio[1];
             string middleName = fio[2];
             //Склоняем
-            if(lastName!="") lastName = Extractor.Declensions(lastName, comboBox_Case_Format.SelectedIndex);
+            if (lastName != "") lastName = Extractor.Declensions(lastName, comboBox_Case_Format.SelectedIndex);
             if (firstName != "") firstName = Extractor.Declensions(firstName, comboBox_Case_Format.SelectedIndex);
             if (middleName != "") middleName = Extractor.Declensions(middleName, comboBox_Case_Format.SelectedIndex);
 
@@ -161,35 +161,18 @@ namespace TextEqualizer
         }
         private void ReadSettings() //чтение настроек
         {
-            try
-            {
-                using (BinaryReader readerData = new BinaryReader(File.OpenRead("settings.bin")))
-                {
-                    checkBox_SurnameBold.Checked = readerData.ReadBoolean(); //жирная фамилия
-                    numericUpDown_Font_Size.Value = readerData.ReadDecimal(); //размер шрифта
-                    comboBox_FIO_Format.SelectedIndex = readerData.ReadInt32(); //вид ФИО
-                }
-            }
-            catch (Exception) //если файла с настройками нет, создаем
-            {
-                SaveSettings();
-            }
+            checkBox_SurnameBold.Checked = Settings.Default.SurnameBold; //жирная фамилия
+            numericUpDown_Font_Size.Value = Settings.Default.Font_Size; //размер шрифта
+            comboBox_FIO_Format.SelectedIndex = Settings.Default.Format_SelectedIndex; //вид ФИО
+            checkBox_TopMostWindows.Checked = Settings.Default.TopMostWindows; //поверх всех окон
         }
         private void SaveSettings() //сохрание настроек
         {
-            try
-            {
-                using (BinaryWriter writer = new BinaryWriter(File.OpenWrite("settings.bin")))
-                {
-                    writer.Write(checkBox_SurnameBold.Checked); //жирная фамилия
-                    writer.Write(numericUpDown_Font_Size.Value); //размер шрифта
-                    writer.Write(comboBox_FIO_Format.SelectedIndex); //вид ФИО
-                }
-            }
-            catch (Exception ex)
-            {
-                _ = MessageBox.Show(ex.Message);
-            }
+            Settings.Default.SurnameBold = checkBox_SurnameBold.Checked; //жирная фамилия
+            Settings.Default.Font_Size = numericUpDown_Font_Size.Value; //размер шрифта
+            Settings.Default.Format_SelectedIndex = comboBox_FIO_Format.SelectedIndex; //вид ФИО
+            Settings.Default.TopMostWindows = checkBox_TopMostWindows.Checked; //поверх всех окон
+            Settings.Default.Save();
         }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) => SaveSettings(); //Сохранение настроек при выходе
 
