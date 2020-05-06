@@ -41,6 +41,7 @@
             this.radioButton_Manual = new System.Windows.Forms.RadioButton();
             this.label_FontSize = new System.Windows.Forms.Label();
             this.radioButton_Fio_observer = new System.Windows.Forms.RadioButton();
+            this.checkBox_TopMostWindows = new System.Windows.Forms.CheckBox();
             this.checkBox_SurnameBold = new System.Windows.Forms.CheckBox();
             this.radioButton_text_observer = new System.Windows.Forms.RadioButton();
             this.numericUpDown_Font_Size = new System.Windows.Forms.NumericUpDown();
@@ -51,7 +52,6 @@
             this.button_Fio = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button_Header = new System.Windows.Forms.Button();
-            this.checkBox_TopMostWindows = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Font_Size)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -179,6 +179,19 @@
             this.radioButton_Fio_observer.Text = "АвтоФИО";
             this.radioButton_Fio_observer.UseVisualStyleBackColor = true;
             // 
+            // checkBox_TopMostWindows
+            // 
+            this.checkBox_TopMostWindows.AutoSize = true;
+            this.checkBox_TopMostWindows.Checked = true;
+            this.checkBox_TopMostWindows.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_TopMostWindows.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox_TopMostWindows.Location = new System.Drawing.Point(11, 139);
+            this.checkBox_TopMostWindows.Name = "checkBox_TopMostWindows";
+            this.checkBox_TopMostWindows.Size = new System.Drawing.Size(116, 16);
+            this.checkBox_TopMostWindows.TabIndex = 3;
+            this.checkBox_TopMostWindows.Text = "Поверх всех окон";
+            this.checkBox_TopMostWindows.UseVisualStyleBackColor = true;
+            // 
             // checkBox_SurnameBold
             // 
             this.checkBox_SurnameBold.AutoSize = true;
@@ -240,7 +253,7 @@
             this.groupBox2.Controls.Add(this.richTextBox_Fio);
             this.groupBox2.Controls.Add(this.groupBox1);
             this.groupBox2.Controls.Add(this.button_Fio);
-            this.groupBox2.Location = new System.Drawing.Point(12, 356);
+            this.groupBox2.Location = new System.Drawing.Point(12, 313);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(691, 195);
             this.groupBox2.TabIndex = 12;
@@ -289,7 +302,7 @@
             this.groupBox3.Controls.Add(this.button_Header);
             this.groupBox3.Controls.Add(this.label_CharCounter);
             this.groupBox3.Controls.Add(this.textBox_Header);
-            this.groupBox3.Location = new System.Drawing.Point(12, 55);
+            this.groupBox3.Location = new System.Drawing.Point(12, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(691, 295);
             this.groupBox3.TabIndex = 13;
@@ -309,24 +322,11 @@
             this.button_Header.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button_Header.UseVisualStyleBackColor = true;
             // 
-            // checkBox_TopMostWindows
-            // 
-            this.checkBox_TopMostWindows.AutoSize = true;
-            this.checkBox_TopMostWindows.Checked = true;
-            this.checkBox_TopMostWindows.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_TopMostWindows.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox_TopMostWindows.Location = new System.Drawing.Point(11, 139);
-            this.checkBox_TopMostWindows.Name = "checkBox_TopMostWindows";
-            this.checkBox_TopMostWindows.Size = new System.Drawing.Size(116, 16);
-            this.checkBox_TopMostWindows.TabIndex = 3;
-            this.checkBox_TopMostWindows.Text = "Поверх всех окон";
-            this.checkBox_TopMostWindows.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 596);
+            this.ClientSize = new System.Drawing.Size(715, 532);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
