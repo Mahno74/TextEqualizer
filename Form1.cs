@@ -20,12 +20,12 @@ namespace TextEqualizer
         public Form1()
         {
             InitializeComponent();
-            TopMost = true;
+
             button_Fio.Click += new EventHandler(Fio_Formatting); //нажатие на кнопку ФИО
             button_Header.Click += new EventHandler(Text_Formatting); //нажатие на кнопку вставить текст
             nextClipboardViewer = (IntPtr)SetClipboardViewer((int)Handle); //для автомитического слежения за буфером
         }
-        protected override void WndProc(ref Message m)//для автомитического слежения за буфером 
+        protected override void WndProc(ref Message m)//для автоматического слежения за буфером 
         {
             const int WM_DRAWCLIPBOARD = 0x308;
             const int WM_CHANGECBCHAIN = 0x030D;
@@ -47,7 +47,7 @@ namespace TextEqualizer
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            Text = "Форматирование текстов и ФИО по шаблону  Юрасов В.В. (с) 2019";
+            Text = "Форматирование текстов и ФИО по шаблону  Юрасов В.В. (с) 2020";
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd M yyyy";
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
@@ -165,6 +165,7 @@ namespace TextEqualizer
             numericUpDown_Font_Size.Value = Settings.Default.Font_Size; //размер шрифта
             comboBox_FIO_Format.SelectedIndex = Settings.Default.Format_SelectedIndex; //вид ФИО
             checkBox_TopMostWindows.Checked = Settings.Default.TopMostWindows; //поверх всех окон
+            if (checkBox_TopMostWindows.Checked) TopMost = true;
         }
         private void SaveSettings() //сохрание настроек
         {
@@ -177,8 +178,11 @@ namespace TextEqualizer
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) => SaveSettings(); //Сохранение настроек при выходе
 
         //Дату принятия в буфер обмена
-        private void label_SessionDate_Click(object sender, EventArgs e) => Clipboard.SetText(dateTimePicker1.Text);
+        private void Label_SessionDate_Click(object sender, EventArgs e) => Clipboard.SetText(dateTimePicker1.Text);
         //Дату публикации в буфер обмена
-        private void label_PubDate_Click(object sender, EventArgs e) => Clipboard.SetText(dateTimePicker2.Text);
+        private void Label_PubDate_Click(object sender, EventArgs e) => Clipboard.SetText(dateTimePicker2.Text);
+
+        //Отработка поверх всех окон 
+        private void CheckBox_TopMostWindows_CheckedChanged(object sender, EventArgs e) => TopMost = checkBox_TopMostWindows.Checked;
     }
 }

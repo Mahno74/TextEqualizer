@@ -100,7 +100,7 @@
             this.label_SessionDate.Size = new System.Drawing.Size(124, 20);
             this.label_SessionDate.TabIndex = 4;
             this.label_SessionDate.Text = "Дата принятия";
-            this.label_SessionDate.Click += new System.EventHandler(this.label_SessionDate_Click);
+            this.label_SessionDate.Click += new System.EventHandler(this.Label_SessionDate_Click);
             // 
             // label_PubDate
             // 
@@ -112,7 +112,7 @@
             this.label_PubDate.Size = new System.Drawing.Size(167, 20);
             this.label_PubDate.TabIndex = 5;
             this.label_PubDate.Text = "Дата опубликования";
-            this.label_PubDate.Click += new System.EventHandler(this.label_PubDate_Click);
+            this.label_PubDate.Click += new System.EventHandler(this.Label_PubDate_Click);
             // 
             // dateTimePicker2
             // 
@@ -191,6 +191,7 @@
             this.checkBox_TopMostWindows.TabIndex = 3;
             this.checkBox_TopMostWindows.Text = "Поверх всех окон";
             this.checkBox_TopMostWindows.UseVisualStyleBackColor = true;
+            this.checkBox_TopMostWindows.CheckedChanged += new System.EventHandler(this.CheckBox_TopMostWindows_CheckedChanged);
             // 
             // checkBox_SurnameBold
             // 
