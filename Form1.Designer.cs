@@ -32,11 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBox_Header = new System.Windows.Forms.TextBox();
             this.label_CharCounter = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label_SessionDate = new System.Windows.Forms.Label();
-            this.label_PubDate = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton_Manual = new System.Windows.Forms.RadioButton();
             this.label_FontSize = new System.Windows.Forms.Label();
@@ -65,7 +60,7 @@
             this.textBox_Header.Multiline = true;
             this.textBox_Header.Name = "textBox_Header";
             this.textBox_Header.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_Header.Size = new System.Drawing.Size(489, 162);
+            this.textBox_Header.Size = new System.Drawing.Size(674, 162);
             this.textBox_Header.TabIndex = 0;
             // 
             // label_CharCounter
@@ -77,59 +72,6 @@
             this.label_CharCounter.Size = new System.Drawing.Size(178, 20);
             this.label_CharCounter.TabIndex = 1;
             this.label_CharCounter.Text = "Количество символов";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Checked = false;
-            this.dateTimePicker1.CustomFormat = "dd MM yyyy";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(544, 216);
-            this.dateTimePicker1.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(107, 20);
-            this.dateTimePicker1.TabIndex = 3;
-            // 
-            // label_SessionDate
-            // 
-            this.label_SessionDate.AutoSize = true;
-            this.label_SessionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_SessionDate.ForeColor = System.Drawing.Color.Blue;
-            this.label_SessionDate.Location = new System.Drawing.Point(534, 193);
-            this.label_SessionDate.Name = "label_SessionDate";
-            this.label_SessionDate.Size = new System.Drawing.Size(124, 20);
-            this.label_SessionDate.TabIndex = 4;
-            this.label_SessionDate.Text = "Дата принятия";
-            this.label_SessionDate.Click += new System.EventHandler(this.Label_SessionDate_Click);
-            // 
-            // label_PubDate
-            // 
-            this.label_PubDate.AutoSize = true;
-            this.label_PubDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_PubDate.ForeColor = System.Drawing.Color.Blue;
-            this.label_PubDate.Location = new System.Drawing.Point(512, 241);
-            this.label_PubDate.Name = "label_PubDate";
-            this.label_PubDate.Size = new System.Drawing.Size(167, 20);
-            this.label_PubDate.TabIndex = 5;
-            this.label_PubDate.Text = "Дата опубликования";
-            this.label_PubDate.Click += new System.EventHandler(this.Label_PubDate_Click);
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Checked = false;
-            this.dateTimePicker2.CustomFormat = "MM/dd/yyyy";
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(544, 264);
-            this.dateTimePicker2.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(107, 20);
-            this.dateTimePicker2.TabIndex = 6;
-            // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.Location = new System.Drawing.Point(515, 21);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 7;
             // 
             // groupBox1
             // 
@@ -295,11 +237,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.monthCalendar1);
-            this.groupBox3.Controls.Add(this.dateTimePicker2);
-            this.groupBox3.Controls.Add(this.label_PubDate);
-            this.groupBox3.Controls.Add(this.label_SessionDate);
-            this.groupBox3.Controls.Add(this.dateTimePicker1);
             this.groupBox3.Controls.Add(this.button_Header);
             this.groupBox3.Controls.Add(this.label_CharCounter);
             this.groupBox3.Controls.Add(this.textBox_Header);
@@ -317,7 +254,7 @@
             this.button_Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_Header.Location = new System.Drawing.Point(6, 208);
             this.button_Header.Name = "button_Header";
-            this.button_Header.Size = new System.Drawing.Size(489, 66);
+            this.button_Header.Size = new System.Drawing.Size(674, 66);
             this.button_Header.TabIndex = 2;
             this.button_Header.Text = "Вставить текст из буфера обмена";
             this.button_Header.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -351,11 +288,6 @@
         private System.Windows.Forms.TextBox textBox_Header;
         private System.Windows.Forms.Label label_CharCounter;
         private System.Windows.Forms.Button button_Header;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label_SessionDate;
-        private System.Windows.Forms.Label label_PubDate;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Button button_Fio;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RichTextBox richTextBox_Fio;

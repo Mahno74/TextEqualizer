@@ -48,10 +48,6 @@ namespace TextEqualizer
         private void Form1_Load(object sender, EventArgs e)
         {
             Text = "Форматирование текстов и ФИО по шаблону  Юрасов В.В. (с) 2020";
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "dd M yyyy";
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.CustomFormat = "dd.MM.yyyy";
             comboBox_FIO_Format.Items.Add("Фамилия Имя Отчество"); //0
             comboBox_FIO_Format.Items.Add("Фамилия/Имя Отчество");//1
             comboBox_FIO_Format.Items.Add("ФАМИЛИЯ Имя Отчество");//2
@@ -176,11 +172,6 @@ namespace TextEqualizer
             Settings.Default.Save();
         }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) => SaveSettings(); //Сохранение настроек при выходе
-
-        //Дату принятия в буфер обмена
-        private void Label_SessionDate_Click(object sender, EventArgs e) => Clipboard.SetText(dateTimePicker1.Text);
-        //Дату публикации в буфер обмена
-        private void Label_PubDate_Click(object sender, EventArgs e) => Clipboard.SetText(dateTimePicker2.Text);
 
         //Отработка поверх всех окон 
         private void CheckBox_TopMostWindows_CheckedChanged(object sender, EventArgs e) => TopMost = checkBox_TopMostWindows.Checked;
